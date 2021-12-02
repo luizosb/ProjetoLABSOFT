@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    </div>
+    
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.maskMoney.min.js"></script>
@@ -127,6 +127,7 @@
             var dueDate = /*[[${produtos.fimleilao}]]*/ 'Data';
             var usuLogado = /*[[${#request.userPrincipal.principal.nome}]]*/ 'UsuarioLogado';
             var autorLance = /*[[${produtos.nomeleilao}]]*/ 'AutorLance';
+            var donodoleilao = /*[[${produtos.usuario}]]*/ 'donodoleilao';
             /*]]>*/
             if (today > dueDate) {
                 $("#lancefinal").prop("disabled", "disable");
@@ -135,6 +136,16 @@
                 if (usuLogado != autorLance) {
                     $("#botaoComprar").hide();
                 }
+            }
+            if (today < dueDate) {
+            	
+            	 $("#botaoComprar").hide();
+            }
+
+            if (usuLogado == donodoleilao) {
+                $("#lancefinal").prop("disabled", "disable");
+                $("#botaoLeilao").hide();
+                $("#lancefinal").hide();
             }
         });
     </script>

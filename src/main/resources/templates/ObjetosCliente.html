@@ -74,6 +74,7 @@
 				<th class="text-center col-md-1">Preço</th>
 				<th class="text-center col-md-1">Descrição</th>
 				<th class="text-center col-md-1">Status</th>
+				<th class="text-center col-md-1">Edição</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -87,6 +88,13 @@
 				<td class="text-center" th:text="${lista.preco}">1</td>
 				<td class="text-center" th:text="${lista.descricao}">1</td>
 				<td class="text-center" th:text="${lista.status}">1</td>
+				<td class="text-center"><a
+					th:href="@{/cadastroObjeto/{codigo}(codigo=${lista.codigo})}">
+						<button class="btn btn-primary">editar</button>
+				</a>
+					
+					</td>
+
 			</tr>
 			<tr>
 

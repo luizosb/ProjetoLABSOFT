@@ -84,8 +84,8 @@
 				<td class="text-center" th:text="${lista.preco}">1</td>
 				<td class="text-center" th:text="${lista.descricao}">1</td>
 				<td class="text-center" th:text="${lista.status}">1</td>
-				<td><a class="btn btn-primary" type="input"
-					style="margin-left: 35%"
+				<td><a sec:authorize="isAuthenticated()"
+					class="btn btn-primary" type="input" name="comprar" id=comprar style="margin-left: 35%"
 					th:href="@{/produto/compra/{codigo}(codigo=${lista.codigo})}">Comprar</a></td>
 			</tr>
 			<tr>
@@ -100,5 +100,6 @@
 
 	<script src="/js/jquery-3.6.0.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+
 </body>
 </html>

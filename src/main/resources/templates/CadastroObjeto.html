@@ -53,6 +53,11 @@
             </div>
 
             <div class="panel-body">
+            
+            <input type="hidden" th:field="*{codigo}"/> 
+            
+            
+            
                 <div class="form-group" th:classappend="${#fields.hasErrors('usuario')} ? has-error" hidden>
                     <label for="usuario" class="col-sm-2 control-label">usuario:</label>
                     <div class="col-sm-4">

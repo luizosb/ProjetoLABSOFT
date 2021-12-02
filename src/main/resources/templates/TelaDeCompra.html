@@ -54,19 +54,21 @@
 
 
 					<h4 class="text-center" text="Tempo de leilão:"></h4>
-					<h6 class="text-center">
-						<a class="btn btn-primary btn-md"
-							th:href="@{/produto/Pagamento/{codigo}(codigo=${produto.codigo})}"><span>Comprar</span></a>
-					</h6>
+
 
 
 					<div th:if="${#strings.toString(produto.status)} == 'LEILAO'">
+
 						<h6 class="text-center">
 							<a class="btn btn-primary btn-md" id="leilao"
 								th:href="@{/produto/leilao/{codigo}(codigo=${produto.codigo})}"><span>Leilão</span></a>
 						</h6>
 					</div>
 					<div th:if="${#strings.toString(produto.status)} == 'BARGANHA'">
+						<h6 class="text-center">
+							<a class="btn btn-primary btn-md" name="comprar" id="comprar"
+								th:href="@{/produto/Pagamento/{codigo}(codigo=${produto.codigo})}"><span>Comprar</span></a>
+						</h6>
 						<h6 class="text-center">
 							<a class="btn btn-primary btn-md" id="barganha"
 								th:href="@{/chatbarganha}"><span>Chat para Negociar</span></a>
@@ -81,5 +83,13 @@
 	</script>
 	<script src="/js/jquery-3.6.0.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<script th:inline="javascript">
+		var donodoleilao = /*[[${produtos.usuario}]]*/'donodoleilao';
+		var usuLogado = /*[[${#request.userPrincipal.principal.nome}]]*/'UsuarioLogado';
+		if (usuLogado == donodoleilao) {
+			$("#comprar").hide();
+
+		}
+	</script>
 </body>
 </html>

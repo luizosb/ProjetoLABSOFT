@@ -11,5 +11,7 @@ public interface Produtos extends JpaRepository<CadProduto, Long>{
 	public List<CadProduto> findByProdutoContaining(String produto);
 	
 	public List<CadProduto> findByUsuarioContaining(String ObjCliente);
+
+	
 	
 }
