@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.projeto.barganhaleilao.model.CadProduto;
 import com.projeto.barganhaleilao.repository.Produtos;
 
@@ -35,14 +33,6 @@ public class cadastroController {
 		ModelAndView mv = new ModelAndView("CadastroObjeto");
 		mv.addObject(produto);
 		return mv;
-	}
-	
-	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
-	public String excluir(@PathVariable CadProduto codigo, RedirectAttributes attributes) {
-		produtos.delete(codigo);
-		
-		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
-		return "redirect:/";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

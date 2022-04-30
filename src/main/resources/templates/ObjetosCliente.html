@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
@@ -37,6 +38,7 @@
 
 			</ul>
 		</div>
+
 	</nav>
 
 	<form class="form-horizontal" method="GET" action="/objetos/cliente"
@@ -77,8 +79,11 @@
 				<th class="text-center col-md-1">Edição</th>
 			</tr>
 		</thead>
+
 		<tbody>
+
 			<tr th:each="lista:${Produtos}">
+
 
 
 				<!--  <td class="text-center" th:text="${lista.Codigo}">1</td>-->
@@ -91,28 +96,46 @@
 				<td class="text-center"><a
 					th:href="@{/cadastroObjeto/{codigo}(codigo=${lista.codigo})}">
 						<button class="btn btn-primary">editar</button>
-				</a>
-					
-					</td>
+				</a> <a th:href="@{/objetos/cliente/{codigo}(codigo=${lista.codigo})}">
+						<button class="btn btn-primary">excluir</button>
+
+
+				</a></td>
 
 			</tr>
+
 			<tr>
 
 				<td colspan="5" th:if="${#lists.isEmpty(Produtos)}">carregando...</td>
 
 
 			</tr>
-		</tbody>
-	</table>
-	<script>
-		function AutoSubmit() {
-			//Submit your form
-			document.forms[0].submit();
-		}
-		//Submit your form after 10000
-		window.setInterval("AutoSubmit();", 3000);
-	</script>
 
+
+		</tbody>
+
+	</table>
+
+	<script>
+		window.onload = AutoSubmit();
+		function AutoSubmit() {
+			if (!sessionStorage.getItem("submitted")) {
+				console.log("submitting");
+				sessionStorage.setItem("submitted", "true");
+				document.forms[0].submit();
+			} else {
+				console.log("already submitted, not repeating");
+				sessionStorage.removeItem("submitted");
+			}
+		}
+	</script>
+	<script>
+		$(document).ready(function() {
+			$("#confirmaExclusao").on('shown.bs.modal', function() {
+				$(".modal").css('display', 'block');
+			})
+		});
+	</script>
 	<script src="/js/botao.js"></script>
 	<script src="/js/jquery-3.6.0.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
